@@ -1,50 +1,39 @@
 package SD.Spring.Security.Configuration;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
-import org.springframework.security.web.SecurityFilterChain;
-
-import javax.sql.DataSource;
-
-@Configuration
+//@Configuration
 public class SecurityConfiguration {
 
-    @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource){
-       JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-       jdbcUserDetailsManager.setUsersByUsernameQuery("select username,password, enabled from user where username=?");
-       jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT username, rolename FROM employee_directory.user " +
-               "INNER JOIN employee_directory.users_roles " +
-               "ON employee_directory.user.id = employee_directory.users_roles.user_id " +
-               "INNER JOIN employee_directory.role " +
-               "ON employee_directory.role.id = employee_directory.users_roles.role_id " +
-               "WHERE username=?");
-       return jdbcUserDetailsManager;
-    }
+//    @Bean
+//    public UserDetailsManager userDetailsManager(DataSource dataSource){
+//       JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+//       jdbcUserDetailsManager.setUsersByUsernameQuery("select username,password, enabled from user where username=?");
+//       jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT username, rolename FROM employee_directory.user " +
+//               "INNER JOIN employee_directory.users_roles " +
+//               "ON employee_directory.user.id = employee_directory.users_roles.user_id " +
+//               "INNER JOIN employee_directory.role " +
+//               "ON employee_directory.role.id = employee_directory.users_roles.role_id " +
+//               "WHERE username=?");
+//       return jdbcUserDetailsManager;
+//    }
 
     //assigning roles to users
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.authorizeHttpRequests(configurer ->
-                configurer
-                        .requestMatchers(HttpMethod.GET, "/employees").hasRole("EMPLOYEE")
-                        .requestMatchers(HttpMethod.GET, "/employees/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/employees").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/employees").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/employees/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/users/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/users").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/users").hasRole("ADMIN"));
-        httpSecurity.httpBasic(Customizer.withDefaults());
-        httpSecurity.csrf(csrf->csrf.disable());
-        return httpSecurity.build();
-    }
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+//        httpSecurity.authorizeHttpRequests(configurer ->
+//                configurer
+//                        .requestMatchers(HttpMethod.GET, "/employees").hasRole("EMPLOYEE")
+//                        .requestMatchers(HttpMethod.GET, "/employees/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.PUT, "/employees").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.DELETE, "/employees").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.DELETE, "/employees/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.GET, "/users/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.PUT, "/users").hasRole("ADMIN")
+ //                       .requestMatchers(HttpMethod.DELETE, "/users").hasRole("ADMIN"));
+//        httpSecurity.httpBasic(Customizer.withDefaults());
+//        httpSecurity.csrf(csrf->csrf.disable());
+//        return httpSecurity.build();
+//    }
 
 
 
