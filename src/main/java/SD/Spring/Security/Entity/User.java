@@ -3,6 +3,7 @@ package SD.Spring.Security.Entity;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -11,6 +12,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
+    private String country;
+    private String favouriteLanguage;
+    private List<String> favouriteSystem;
     @Column(name="first_name")
     private String firstName;
     @Column(name="last_name")
@@ -39,6 +43,30 @@ public class User {
     }
 
     public User() {
+    }
+
+    public List<String> getFavouriteSystem() {
+        return favouriteSystem;
+    }
+
+    public void setFavouriteSystem(List<String> favouriteSystem) {
+        this.favouriteSystem = favouriteSystem;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getFavouriteLanguage() {
+        return favouriteLanguage;
+    }
+
+    public void setFavouriteLanguage(String favouriteLanguage) {
+        this.favouriteLanguage = favouriteLanguage;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public int getId() {
