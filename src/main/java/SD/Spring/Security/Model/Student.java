@@ -1,7 +1,12 @@
 package SD.Spring.Security.Model;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class Student {
     private String firstName;
+    @NotNull(message="field required.")
+    @Size(min=1, message = "field required.")
     private String lastName;
     private String country;
 

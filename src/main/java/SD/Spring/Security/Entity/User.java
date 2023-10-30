@@ -1,6 +1,8 @@
 package SD.Spring.Security.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,6 +19,9 @@ public class User {
     private List<String> favouriteSystem;
     @Column(name="first_name")
     private String firstName;
+
+    @NotNull(message = "field required.")
+    @Size(min=1, message = "field required.")
     @Column(name="last_name")
     private String lastName;
     @Column(name="username")
