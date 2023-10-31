@@ -18,7 +18,6 @@ public class UserController {
     @PostConstruct
     public void initShowForm(){
 
-
     }
 
     //inject the list of countries from application properties
